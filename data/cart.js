@@ -31,7 +31,7 @@ export function addToCart(productId) {
     cart.push({
       productId: productId,
       quantity: 1,
-      deliveryOptionId: '1'
+      // deliveryOptionId: '1'
     });
   }
 
@@ -65,3 +65,25 @@ export function updateDeliveryOption(productId, deliveryOptionId) {
 
   saveToStorage();
 }
+
+// Note: this code is not in the video. This code is for
+// people who are starting straight from lesson 16. This
+// checks if the cart in localStorage has deliveryOptionIds.
+// If not, it will add a deliveryOptionId and refresh the page.
+function validateCart() {
+  if (!cart) return;
+
+  let needsPageRefresh;
+  for (let i = 0; i < cart.length; i++) {
+    if (!cart[i].deliveryOptionId) {
+      cart[i].deliveryOptionId = '1';
+      needsPageRefresh = true;
+    }
+  }
+
+  if (needsPageRefresh) {
+    localStorage.setItem('cart', JSON.stringify(cart));
+    window.location.reload();
+  }
+}
+validateCart();
