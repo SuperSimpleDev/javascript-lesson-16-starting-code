@@ -24,7 +24,7 @@ export function getDeliveryOption(deliveryOptionId) {
   // Note: this code is a bit different from the video
   // because if you start directly from lesson 16, you
   // might not have deliveryOptionIds saved in localStorage.
-  // In this case, this code will default to the first
-  // delivery option.
+  // In this case, this function will return the first
+  // delivery option to avoid an error.
   return deliveryOption || deliveryOption[0];
 }
